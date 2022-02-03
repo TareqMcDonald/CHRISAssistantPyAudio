@@ -1,1 +1,58 @@
-// This code is still being worked on. Please come back later.
+# This code is still being worked on. Please come back later.
+import pyttsx3
+import datetime
+import PyAudio
+import SpeechRecognition as sr
+
+engine = pyttsx3.init()
+engine.runAndWait()
+
+def speak(audio):
+    engine.say(audio)
+    engine.runAndWait()
+
+def time():
+    Time = datetime.datetime.now().strftime("%I:%M:%S")
+    speak(Time)
+    speak("That's the current time.")
+
+def date():
+    year = int(datetime.datetime.now().year)
+    month = int(datetime.datetime.now().month)
+    day = int(datetime.datetime.now().day)
+    speak(month)
+    speak(day)
+    speak(year)
+    speak("That's the date today.")
+
+def wishme():
+    speak("I am Chris, computerized helpful running internal secretary.")
+    hour = datetime.datetime.now().hour
+    if hour >= 5 and hour<12:
+        speak("good morning my son. welcome back.")
+    elif hour >= 12 and hour<17:
+        speak("good afternoon my son. welcome back.")
+    elif hour >= 17 and hour<24:
+        speak("good evening my son. welcome back.")
+    else:
+        speak("your early my son. welcome back.")
+    speak("How can I help son?")
+
+def takeCommand():
+    r = sr.Recognizer()
+    with sr.Microphone() as source:
+        print("Listening...")
+        r.pause_threshold = 1
+        audio = r.listen(source)
+
+    try:
+        print("Recognizing...")
+        query = r.recognize_google(audio, language='en_us')
+        print(query)
+
+    except Exception as e:
+        print(e)
+        speak("Say that again son")
+        return "None"
+
+    return query
