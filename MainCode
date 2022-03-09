@@ -2,7 +2,7 @@
 import pyttsx3
 import datetime
 import PyAudio
-import SpeechRecognition as sr
+import speech_recognition as sr
 
 engine = pyttsx3.init()
 engine.runAndWait()
