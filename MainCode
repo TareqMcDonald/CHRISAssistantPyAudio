@@ -56,3 +56,6 @@ def takeCommand():
         return "None"
 
     return query
+
+wishme()
+takeCommand()
